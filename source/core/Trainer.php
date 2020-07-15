@@ -88,7 +88,7 @@ class Trainer
 			{
 				throw new InvalidObjectRemovalException('Aus ' . get_class($this) . ' Objekten können nur Objekte vom Typ "TrainerSchwerpunkt" oder "TrainerLehrfeld" entfernt werden! Typ übergeben: ' . get_class($objekt));
 			}
-			elseif(!in_array($objekt, $this->schwerpunkte) || !in_array($objekt, $this->lehrfelder))
+			elseif(!in_array($objekt, $this->schwerpunkte) && !in_array($objekt, $this->lehrfelder))
 			{
 				throw new ObjectNotInCollectionException(get_class($objekt) . ' Objekt ist nicht im ' . get_class($this) . ' Objekt mit Namen ' . $this->vorname . ' ' . $this->nachname . ' vorhanden!');
 			}
