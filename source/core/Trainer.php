@@ -22,7 +22,7 @@
  *		Add(object TrainerSchwerpunkt) -> Fügt einem Trainer Objekt entsprechende TrainerSchwerpunkt Objekte hinzu
  *		Rem(object TrainerSchwerpunkt) -> Entfernt entsprechende TrainerSchwerpunkt Objekte aus einem Trainer Objekt
  *
- *	Rev: 1.01
+ *	Rev: 1.02
  *
  *	Author(en): Andreas Biester
  */
@@ -68,17 +68,17 @@ class Trainer
 	{
 		if($this == $objekt)
 		{
-			throw new ObjectSelfRemoveException('Objekte vom Typ ' . get_class($this) . ' können sich nicht aus sich selbst entfernen!');
+			throw new ObjectSelfRemovalException('Objekte vom Typ ' . get_class($this) . ' können sich nicht aus sich selbst entfernen!');
 		}
 		else
 		{
 			if(get_class($objekt) != "TrainerSchwerpunkt")
 			{
-				throw new ObjectInvalidRemovalException('Aus ' . get_class($this) . ' Objekten können nur Objekte vom Typ "TrainerSchwerpunkt" entfernt werden!');
+				throw new InvalidObjectRemovalException('Aus ' . get_class($this) . ' Objekten können nur Objekte vom Typ "TrainerSchwerpunkt" entfernt werden!');
 			}
 			elseif(!in_array($objekt, $this->schwerpunkte))
 			{
-				throw new InvalidObjectRemoveException(get_class($objekt) . ' Objekt befindet sich nicht in den Schwerpunkten des ' . get_class($this) . ' Objekts mit Namen ' . $this->vorname . ' ' . $this->nachname . '!');
+				throw new ObjectNotInCollectionException(get_class($objekt) . ' Objekt befindet sich nicht in den Schwerpunkten des ' . get_class($this) . ' Objekts mit Namen ' . $this->vorname . ' ' . $this->nachname . '!');
 			}
 			else
 			{
