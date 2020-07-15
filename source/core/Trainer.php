@@ -24,7 +24,7 @@
  *
  *	TrainerObjekt Objekte sind: TrainerSchwerpunkt, TrainerLehrfeld Objekte
  *
- *	Rev: 1.03
+ *	Rev: 1.04
  *
  *	Author(en): Andreas Biester
  */
@@ -102,8 +102,8 @@ class Trainer
 					break;
 					
 					case "TrainerLehrfeld":
-						$index = array_search($objekt, $this->schwerpunkte);
-						array_splice($this->schwerpunkte, $index, 1);
+						$index = array_search($objekt, $this->lehrfelder);
+						array_splice($this->lehrfelder, $index, 1);
 					break;
 				}
 			}

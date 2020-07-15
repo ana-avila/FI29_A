@@ -10,10 +10,10 @@
  *	um die Unterscheidung zu Ermöglichen
  *
  *	Verwendung:
- *		TrainerSchwerpunkt(string $bezeichnung[, bool $primaer])
+ *		TrainerObjekt(string $bezeichnung[, bool $primaer])
  *
- *	Beim erstellen von Objekten dieser Klasse muss für einen TrainerSchwerpunkt
- *	zumindest eine Bezeichnung des Schwerpunktes übergeben werden. Der Parameter
+ *	Beim erstellen von Objekten dieser Klasse muss für ein TrainerObjekt
+ *	zumindest eine Bezeichnung übergeben werden. Der Parameter
  *	$primaer ist optional. Wird dieser nicht mit Übergeben, so wird der Schwerpunkt
  *	als Sekundär angesehen.
  *
@@ -21,7 +21,7 @@
  *		- Primär Schwerpunkt: $trainerSchwerpunkt = new TrainerSchwerpunkt("Datenbanken", true);
  *		- Sekundär Schwerpunkt: $trainerSchwerpunkt = new TrainerSchwerpunkt("Office IT");
  *
- *	Rev: 1.02
+ *	Rev: 1.04
  *
  *	Author(en): Andreas Biester
  */
