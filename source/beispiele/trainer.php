@@ -1,9 +1,7 @@
 <?php
 include_once("../core/Exceptions.php");
-include_once("../core/KursObjektBasis.php");
-include_once("../core/KursObjekt.php");
-include_once("../core/TrainerSchwerpunkt.php");
 include_once("../core/Trainer.php");
+include_once("../core/ClassExtensions.php");
 ?>
 <!DOCTYPE html>
 <html lang="de">

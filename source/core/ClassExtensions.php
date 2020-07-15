@@ -9,7 +9,6 @@
  *	Diese Implementierung erlaubt es außderdem unter Verwendung der get_class(object)
  *	Methode zu überprüfen mithilfe welcher Klasse ein Objekt instaziiert wurde.
  *
- *	Dadurch werden Prüfungen erheblich erleichtert.
  *
  *	Diesen Klassen stehen alle Eigenschaften und Methoden zur Verfügung über
  *	welche die Klasse KursObjekt bzw. KursObjektBasis auch verfügt.
@@ -18,13 +17,24 @@
  *
  *	Verwendung von Schwerpunkt siehe KursObjektBasis.php
  *
- *	Rev: 1.00
+ *	Rev: 1.01
  *
  *	Author(en): Andreas Biester
  */
- 
+
+include_once("KursObjektBasis.php");
+include_once("KursObjekt.php");
+include_once("TrainerObjekt.php");
+
+//Klassen welche KursObjektBasis extenden
+class Schwerpunkt extends KursObjektBasis {}
+
+// Klassen welche KursObject extenden
 class Kursvorlage extends KursObjekt {}
 class Modul extends KursObjekt {}
-class Lernfeld extends KursObjekt {}
-class Schwerpunkt extends KursObjektBasis {}
+class Lehrfeld extends KursObjekt {}
+
+//Klassen welche TrainerObjekt extenden
+class TrainerSchwerpunkt extends TrainerObjekt {}
+class TrainerLehrfeld extends TrainerObjekt {}
 ?>

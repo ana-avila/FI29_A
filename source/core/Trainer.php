@@ -19,10 +19,12 @@
  *		$trainer = new Trainer("Max", "Mustermann", "m.mustermann@example.com");
  *
  *	Methoden:
- *		Add(object TrainerSchwerpunkt) -> Fügt einem Trainer Objekt entsprechende TrainerSchwerpunkt Objekte hinzu
- *		Rem(object TrainerSchwerpunkt) -> Entfernt entsprechende TrainerSchwerpunkt Objekte aus einem Trainer Objekt
+ *		Add(object TrainerObjekt) -> Fügt einem Trainer Objekt entsprechende TrainerObjekt Objekte hinzu
+ *		Rem(object TrainerObjekt) -> Entfernt entsprechende TrainerObjekt Objekte aus einem Trainer Objekt
  *
- *	Rev: 1.02
+ *	TrainerObjekt Objekte sind: TrainerSchwerpunkt, TrainerLehrfeld Objekte
+ *
+ *	Rev: 1.03
  *
  *	Author(en): Andreas Biester
  */
@@ -33,6 +35,7 @@ class Trainer
 	public $nachname;
 	public $email;
 	public $schwerpunkte = array();
+	public $lehrfelder = array();
 	
 	function __construct(string $vorname, string $nachname, string $email)
 	{
@@ -49,17 +52,26 @@ class Trainer
 		}
 		else
 		{
-			if(get_class($objekt) != "TrainerSchwerpunkt")
+			if(get_class($objekt) != "TrainerSchwerpunkt" && get_class($objekt) != "TrainerLehrfeld")
 			{
-				throw new InvalidObjectAdditionException('Objekte vom Typ ' . get_class($this) . ' können sich nur Objekte vom Typ "Schwerpunkt" hinzufügen!');
+				throw new InvalidObjectAdditionException('Objekte vom Typ ' . get_class($this) . ' können sich nur Objekte vom Typ "TrainerSchwerpunkt" oder "TrainerLehrfeld" hinzufügen! Typ übergeben: ' . get_class($objekt));
 			}
-			elseif(in_array($objekt, $this->schwerpunkte))
+			elseif(in_array($objekt, $this->schwerpunkte) || in_array($objekt, $this->lehrfelder))
 			{
 				throw new ObjectAllreadyInCollectionException('Dem ' . get_class($this) . ' Objekt wurde bereits dieses ' . get_class($objekt) . ' Objekt mit der Bezeichnung ' . $objekt->bezeichnung . ' hinzugefügt!');
 			}
 			else
 			{
-				array_push($this->schwerpunkte, $objekt);
+				switch(get_class($objekt))
+				{
+					case "TrainerSchwerpunkt":
+						array_push($this->schwerpunkte, $objekt);
+					break;
+					
+					case "TrainerLehrfeld":
+						array_push($this->lehrfelder, $objekt);
+					break;
+				}
 			}
 		}
 	}
@@ -72,18 +84,28 @@ class Trainer
 		}
 		else
 		{
-			if(get_class($objekt) != "TrainerSchwerpunkt")
+			if(get_class($objekt) != "TrainerSchwerpunkt" && get_class($objekt) != "TrainerLehrfeld")
 			{
-				throw new InvalidObjectRemovalException('Aus ' . get_class($this) . ' Objekten können nur Objekte vom Typ "TrainerSchwerpunkt" entfernt werden!');
+				throw new InvalidObjectRemovalException('Aus ' . get_class($this) . ' Objekten können nur Objekte vom Typ "TrainerSchwerpunkt" oder "TrainerLehrfeld" entfernt werden! Typ übergeben: ' . get_class($objekt));
 			}
-			elseif(!in_array($objekt, $this->schwerpunkte))
+			elseif(!in_array($objekt, $this->schwerpunkte) || !in_array($objekt, $this->lehrfelder))
 			{
-				throw new ObjectNotInCollectionException(get_class($objekt) . ' Objekt befindet sich nicht in den Schwerpunkten des ' . get_class($this) . ' Objekts mit Namen ' . $this->vorname . ' ' . $this->nachname . '!');
+				throw new ObjectNotInCollectionException(get_class($objekt) . ' Objekt ist nicht im ' . get_class($this) . ' Objekt mit Namen ' . $this->vorname . ' ' . $this->nachname . ' vorhanden!');
 			}
 			else
 			{
-				$index = array_search($objekt, $this->schwerpunkte);
-				array_splice($this->schwerpunkte, $index, 1);
+				switch(get_class($objekt))
+				{
+					case "TrainerSchwerpunkt":
+						$index = array_search($objekt, $this->schwerpunkte);
+						array_splice($this->schwerpunkte, $index, 1);
+					break;
+					
+					case "TrainerLehrfeld":
+						$index = array_search($objekt, $this->schwerpunkte);
+						array_splice($this->schwerpunkte, $index, 1);
+					break;
+				}
 			}
 		}
 	}

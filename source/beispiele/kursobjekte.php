@@ -1,7 +1,5 @@
 <?php
 include_once("../core/Exceptions.php");
-include_once("../core/KursObjektBasis.php");
-include_once("../core/KursObjekt.php");
 include_once("../core/ClassExtensions.php");
 ?>
 <!DOCTYPE html>
@@ -22,8 +20,8 @@ include_once("../core/ClassExtensions.php");
 	$modul1 = new Modul("IT-Tanzen für Anfänger");
 
 	//Erstellen von Lernfeld Objekten
-	$lernfeld1 = new Lernfeld("Grundschritte A", 80);
-	$lernfeld2 = new Lernfeld("Grundschritte B", 40);
+	$lehrfeld1 = new Lehrfeld("Grundschritte A", 80);
+	$lehrfeld2 = new Lehrfeld("Grundschritte B", 40);
 
 	/*
 	 *	Da gegenwärtig das Verhalten vorsieht, das ein KursObjekt
@@ -51,8 +49,8 @@ include_once("../core/ClassExtensions.php");
 	 *	erhöht.
 	 */
 
-	$modul1->Add($lernfeld1);
-	$modul1->Add($lernfeld2);
+	$modul1->Add($lehrfeld1);
+	$modul1->Add($lehrfeld2);
 
 	/*
 	 *	Dem zuvor erzeugten Kursvorlage Objekt wird mit Aufruf der Methode Add(object KursObjekt)
