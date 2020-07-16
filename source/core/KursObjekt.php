@@ -34,15 +34,15 @@
  *	um die Gesamtanzahl von Unterrichtseinheiten eines Moduls und Letztendlich
  *	der Gesamten Kursvorlage daraus bestimmen zu können.
  *
- *	Rev: 1.01
+ *	Rev: 1.02
  *
- *	Author(en): Andreas Biester
+ *	Autor(en): Andreas Biester
  */
  
 class KursObjekt extends KursObjektBasis
 {
-	private $ue;
-	private $data = array();
+	public $ue;
+	public $data = array();
 	
 	function __construct(string $bezeichnung, int $ue = 0)
 	{

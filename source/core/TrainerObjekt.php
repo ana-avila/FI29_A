@@ -21,9 +21,9 @@
  *		- Primär Schwerpunkt: $trainerSchwerpunkt = new TrainerSchwerpunkt("Datenbanken", true);
  *		- Sekundär Schwerpunkt: $trainerSchwerpunkt = new TrainerSchwerpunkt("Office IT");
  *
- *	Rev: 1.04
+ *	Rev: 1.05
  *
- *	Author(en): Andreas Biester
+ *	Autor(en): Andreas Biester
  */
  
 class TrainerObjekt extends KursObjektBasis

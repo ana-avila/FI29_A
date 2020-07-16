@@ -17,9 +17,9 @@
  *
  *	Verwendung von Schwerpunkt siehe KursObjektBasis.php
  *
- *	Rev: 1.01
+ *	Rev: 1.02
  *
- *	Author(en): Andreas Biester
+ *	Autor(en): Andreas Biester
  */
 
 include_once("KursObjektBasis.php");
@@ -32,9 +32,9 @@ class Schwerpunkt extends KursObjektBasis {}
 // Klassen welche KursObject extenden
 class Kursvorlage extends KursObjekt {}
 class Modul extends KursObjekt {}
-class Lehrfeld extends KursObjekt {}
+class Lernfeld extends KursObjekt {}
 
 //Klassen welche TrainerObjekt extenden
 class TrainerSchwerpunkt extends TrainerObjekt {}
-class TrainerLehrfeld extends TrainerObjekt {}
+class TrainerLernfeld extends TrainerObjekt {}
 ?>

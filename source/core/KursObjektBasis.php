@@ -12,9 +12,9 @@
  *	Erstellen eines KursObjektBasis Objektes für Schwerpunkte:
  *		$schwerpunkt = new KursObjektBasis("Dies ist ein Kursschwerpunkt");
  *
- *	Rev: 1.01
+ *	Rev: 1.02
  *
- *	Author(en): Andreas Biester
+ *	Autor(en): Andreas Biester
  */
  
 class KursObjektBasis

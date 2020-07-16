@@ -6,9 +6,9 @@
  *	Dadurch soll die Lesbarkeit des Codes versch. Klassen / Funktionen gesteigert werden,
  *	indem nur anhand des Names einer Ausnahme das Problem erkenntlich wird.
  *
- *	Rev: 1.00
+ *	Rev: 1.01
  *
- *	Author(en): Andreas Biester
+ *	Autor(en): Andreas Biester
  */
  
 class ObjectSelfAdditionException extends Exception {}
