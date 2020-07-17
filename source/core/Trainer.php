@@ -25,7 +25,6 @@
  *	TrainerObjekt Objekte sind: TrainerSchwerpunkt, TrainerLernfeld Objekte
  *
  *	Rev: 1.05
- 
  *
  *	Autor(en): Andreas Biester
  */
