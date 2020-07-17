@@ -60,4 +60,6 @@ foreach($uzListe as $urlaubsZeitraum)
 		echo "Urlaubszeitraum ist 1 Tag";
 	}
 }
+
+echo nl2br("\n\n");
 ?>

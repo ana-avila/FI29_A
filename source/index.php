@@ -2,7 +2,7 @@
 include_once("core/Exceptions.php");
 include_once("core/KursObjektBasis.php");
 include_once("core/KursObjekt.php");
-include_once("core/TrainerSchwerpunkt.php");
+include_once("core/TrainerObjekt.php");
 include_once("core/Trainer.php");
 ?>
 <!DOCTYPE html>
