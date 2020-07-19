@@ -1,0 +1,110 @@
+body {
+	margin: 0;
+	background-color: #232327;
+}
+
+main {
+	width: 60%;
+	margin: auto;
+	background-color: #E5E5E5;
+	padding: 1.5rem;
+	border-left:5px solid #575763;
+	border-right:5px solid #575763;
+}
+
+.introTitle {
+	margin: 0;
+	border-bottom: 2px dotted black;
+	color: #54009E;
+}
+
+.refTitle
+{
+	margin: 0 0 1em 0;
+	border-bottom: 2px dotted black;
+	color: #54009E;
+}
+
+.reflink {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #005C9E;
+}
+
+.Path
+{
+	width: 60%;
+	margin: auto;
+	color: white;
+}
+
+.Path > ul {
+	margin: 0;
+	padding: .5em .5em 1em .5em;
+}
+
+.Path > ul > li {
+	display: inline-block;
+}
+
+.Path a {
+	text-decoration: none;
+	color: white;
+}
+
+.Path a:hover {
+	text-decoration: none;
+	color: lightblue;
+}
+
+.Path > ul .link::before {
+	content: "> ";
+}
+
+.ref > .Classes {
+	padding-left: 0;
+}
+.ref > .Classes > li {
+	list-style: none;
+}
+
+.beschreibung {
+	padding: 1em;
+	margin-bottom: 1em;
+	background: white;
+	border: 1px solid gray;
+	font-size: 20px;
+}
+
+.desc {
+	margin-top: .2em;
+	padding-left: 1em;
+}
+
+.comment {
+	color: #D39700;
+}
+
+.class {
+	color: #005C9E;
+	font-weight: bolder;
+	margin-right: 1em;
+}
+
+.modifier {
+	color: #9B0000;
+}
+
+.method {
+	color: #005C9E;
+	text-decoration: none;
+}
+
+.type {
+	color: #009B00;
+}
+
+.param {
+	color: #005C9E;
+}

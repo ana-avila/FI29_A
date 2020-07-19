@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<title>Index - Kursplaner</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="expires" content="0">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<nav class="Path">
+			<ul>
+				<li><a href="../index.html">Klassenübersicht</a></li>
+				<li><a class="link" href="kursobjektbasis.html">KursObjektBasis</a></li>
+				<li><a class="link" href="kursobjektbasis_construct.html">KursObjektBasis::__construct</a></li>
+			</ul>
+		</nav>
+		<main>
+			<div class="intro">
+			<h1 class="introTitle">KursObjektBasis::__construct</h1>
+			<p>KursObjektBasis::__construct - Erstellt eine KursObjektBasis instanz</p>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beschreibung</h2>
+				<div class="beschreibung">
+					<div class="desc">
+						<span class="modifier">public</span>
+						<span class="method"><a class="method" href="kursobjektbasis_construct.html">__construct </a></span>(
+						<span class="type">string</span>
+						<span class="param">$bezeichnung</span> )
+					</div>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Parameter-Liste</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>bezeichnung</dt>
+						<dd>Die Bezeichnung die dieses Objekt tragen soll.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Rückgabewerte</h2>
+				<div class="beschreibung">
+					<p>Erstellt ein KursObjektBasis Objekt bei Erfolg</p>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beispiel(e)</h2>
+				<div class="beschreibung">
+					<span class="method">&#60 ?php<br></span>
+					<span class="comment">/* KursObjektBasis Objekt instanziieren und die Eigenschaft 'bezeichnung' auslesen */<br></span>
+					<span class="method">$kob =</span> <span class="type">new</span> <span class="method">KursObjektBasis</span>(<span class="modifier">"Beispielobjekt"</span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$kob->bezeichnung;</span></span>
+					<br>
+					<span class="comment">/* Gibt 'Beispielobjekt' aus */<br></span>
+					<span class="method">?&#62 </span>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
