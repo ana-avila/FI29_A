@@ -141,7 +141,7 @@ if(isset($_POST['addLF']))
 		<?php
 						foreach($modul->data as $lf)
 						{
-							$index = array_search($lf, $modul->data)
+							$index = array_search($modul, $kv->data)
 		?>
 							<form method="post">
 								<input type="text" name="lf" value="<?= $lf->bezeichnung ?>" style="width: 400px; margin-left: 4em;">
