@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<title>KursObjekt::Add</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="expires" content="0">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<nav class="Path">
+			<ul>
+				<li><a href="../index.html">Klassenübersicht</a></li>
+				<li><a class="link" href="kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="kursobjekt_add.html">KursObjekt::Add</a></li>
+			</ul>
+		</nav>
+		<main>
+			<div class="intro">
+			<h1 class="introTitle">KursObjekt::Add</h1>
+			<p>KursObjekt::Add - Fügt einem KursObjekt ein weiteres KursObjekt hinzu</p>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beschreibung</h2>
+				<div class="beschreibung">
+					<div class="desc">
+						<span class="modifier">public</span>
+						<span class="method"><a class="method" href="kursobjekt_construct.html">Add </a></span>(
+						<span class="type">object</span>
+						<span class="param">$objekt </span>)
+					</div>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Parameter-Liste</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>objekt</dt>
+						<dd class="para">Das KursObjekt Objekt das hinzugefügt werden soll. Verfügt das hinzuzufügende KursObjekt Objekt über einen Wert für Unterrichtseinheiten, wird dieser zu den Unterrichtseinheiten des KursObjekt Objekt, dem es hinzugefügt wird, angerechnet.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beispiel(e)</h2>
+				<div class="beschreibung">
+					<span class="method">&#60 ?php<br></span>
+					<span class="comment">/* KursObjekt mit Bezeichnung, ohne Unterrichtseinheiten erstellen */<br></span>
+					<span class="method">$ko1 =</span> <span class="type">new</span> <span class="method">KursObjekt</span>(<span class="modifier">"Beispiel KursObjekt"</span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$ko1->bezeichnung;</span></span>
+					<br>
+					<span class="method">echo</span> <span class="param">$ko1->ue;</span></span>
+					<br>
+					<span class="comment">/* Gibt 'Beispiel KursObjekt' und 0 aus */<br></span>
+					<br><br>
+					<span class="comment">/*KursObjekt mit Bezeichnung und Unterrichtseinheiten erstellen */</span>
+					<br>
+					<span class="method">$ko2 =</span> <span class="type">new</span> <span class="method">KursObjekt</span>(<span class="modifier">"Test KursObjekt mit Unterrichtseinheiten"</span>, <span class="modifier">80</span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$ko2->bezeichnung;</span></span>
+					<br>
+					<span class="method">echo</span> <span class="param">$ko2->ue;</span></span>
+					<br>
+					<span class="comment">/* Gibt 'Test KursObjekt mit Unterrichtseinheiten' und 80 aus */<br></span>
+					<br><br>
+					<span class="comment">/* Erstem KursObjekt $ko1 das zweite KursObjekt $ko2 hinzufügen */</span>
+					<br>
+					<span class="method">$ko1->Add</span></span>(<span class="param">$ko2</span>);
+					<br>
+					<br>
+					<span class="method">?&#62 <br></span>
+					<span class="method">&#60 pre&#62 <br></span>
+					<span class="method">&#60 ?= print_r</span>(<span class="param">$ko1</span>) ?&#62
+					<br>
+					<span class="method">&#60 /pre&#62 </span>
+					<br>
+					<span class="comment">/* Erzeugt folgende Ausgabe: */</span>
+					<br>
+					<img class="exImage" src="img/example.png">
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

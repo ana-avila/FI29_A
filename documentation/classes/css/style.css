@@ -108,3 +108,12 @@ main {
 .param {
 	color: #005C9E;
 }
+
+.para {
+	margin-bottom: 1em;
+}
+
+.exImage {
+	margin-top: 1em;
+	border-left: 2px solid #575763;
+}

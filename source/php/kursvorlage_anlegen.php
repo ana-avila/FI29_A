@@ -16,16 +16,9 @@ if(isset($_POST['addKvlg']))
 		$kv = new Kursvorlage($_POST['kvlg']);
 		$_SESSION['kvObject'] = $kv;
 		unset($_POST['kvlg']);
+		unset($_POST['addKvlg']);
 	}
 }
-
-/*
- *	Modul Array hier anlegen. Die Add Methode von Klassen die KursObjekt erweitern (in diesem fall Modul), rechnet die Dauer eines
- *	Objektes das ihm Übergeben wird auf seine eigene. Lernobjekte MÜSSEN eine Dauer implementieren, so setzt sich also
- *	die Dauer eines Moduls aus der dauer seiner Lernobjekte zusammen. Diese werden jedoch erst später angelegt, wir müssen die Module
- *	also vorhalten, bis sämtliche Lernfelder für dieses Modul bekannt sind. Anschließend können sie dem entsprechenden Modul Objekt
- *	hinzugefügt werden.
- */
  
 if(isset($_POST['addMod']))
 {
@@ -45,6 +38,8 @@ if(isset($_POST['addMod']))
 				echo $e;
 			}
 		}
+		unset($_POST['mod']);
+		unset($_POST['addMod']);
 	}
 }
 
@@ -73,6 +68,9 @@ if(isset($_POST['addLF']))
 		{
 			echo $e;
 		}
+		unset($_POST['lf']);
+		unset($_POST['lfUE']);
+		unset($_POST['addLF']);
 	}
 }
 ?>
@@ -167,7 +165,7 @@ if(isset($_POST['addLF']))
 		?>
 				<div class="modAdd">
 				<form method="post">
-					<input type="text" name="mod" placeholder="Name d. Modul.. 'Office IT'" style="width: 400px;">
+					<input type="text" name="mod" placeholder="Name d. Modul.. 'Office IT'" style="width: 400px; margin-left: 2em;">
 					<input type="submit" name="addMod" value="Modul Anlegen">
 				</form>
 				</div>
