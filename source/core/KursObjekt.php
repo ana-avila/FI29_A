@@ -23,7 +23,7 @@
  *		$kursvorlage = new KursObjekt("Datenbanken", 80);
  *
  *	Methoden:
- *		Add(object $objekt) -> Fügt einem KursObjekt ein anderes Objekt auf Basis von KursObjekt hinzu.
+ *		Add(objekt $objekt) -> Fügt einem KursObjekt ein anderes Objekt auf Basis von KursObjekt hinzu.
  *
  *	Beim Erzeugen von KursObjekt Objekten ist zumind. immer deren Bezeichnung
  *	zu Übergeben. Grundsätzlich ist es momentan Optional die anzahl der
@@ -34,7 +34,7 @@
  *	um die Gesamtanzahl von Unterrichtseinheiten eines Moduls und Letztendlich
  *	der Gesamten Kursvorlage daraus bestimmen zu können.
  *
- *	Rev: 1.02
+ *	Rev: 1.03
  *
  *	Autor(en): Andreas Biester
  */
@@ -50,10 +50,157 @@ class KursObjekt extends KursObjektBasis
 		$this->ue = $ue;
 	}
 	
-	function Add($objekt)
+	function Add(object $objekt)
 	{
-		array_push($this->data, $objekt);
-		$this->ue += $objekt->ue;
+		if(get_class($this) == get_class($objekt))
+		{
+			throw new ObjectSelfAdditionException('Objekte vom Typ "' . get_class($this) . '" können sich keine Objekte vom selben Typen hinzufügen!');
+		}
+		switch(get_class($this))
+		{
+			case "Kursvorlage":
+				if(get_class($objekt) != "Modul")
+				{
+					throw new InvalidObjectAdditionException('Objekten vom Typ "' . get_class($this) . '" können nur Objekte vom Typ "Modul" hinzugefügt werden!');
+				}
+				else
+				{
+					if(in_array($objekt, $this->data))
+					{
+						throw new ObjectAllreadyInCollectionException('Das "' . get_class($this) . '" Objekt mit der Bezeichnung "' . $this->bezeichnung . '" enthält bereits ein "' . get_class($objekt) . '" Objekt mit der Bezeichnung "' . $objekt->bezeichnung . '".');
+					}
+					else
+					{
+						array_push($this->data, $objekt);
+						$this->Update();
+					}
+				}
+			break;
+			
+			case "Modul":
+				if(get_class($objekt) != "Lernfeld")
+				{
+					throw new InvalidObjectAdditionException('Objekten vom Typ "' . get_class($this) . '" können nur Objekte vom Typ "Lernfeld" hinzugefügt werden!');
+				}
+				else
+				{
+					if(in_array($objekt, $this->data))
+					{
+						throw new ObjectAllreadyInCollectionException('Das "' . get_class($this) . '" Objekt mit der Bezeichnung "' . $this->bezeichnung . '" enthält bereits ein "' . get_class($objekt) . '" Objekt mit der Bezeichnung "' . $objekt->bezeichnung . '".');
+					}
+					else
+					{
+						array_push($this->data, $objekt);
+						$this->Update();
+					}
+				}
+			break;
+			
+			case "Lernfeld":
+				if(get_class($objekt) != "Schwerpunkt")
+				{
+					throw new InvalidObjectAdditionException('Objekten vom Typ "' . get_class($this) . '" können nur Objekte vom Typ "Schwerpunkt" hinzugefügt werden!');
+				}
+				else
+				{
+					if(in_array($objekt, $this->data))
+					{
+						throw new ObjectAllreadyInCollectionException('Das "' . get_class($this) . '" Objekt mit der Bezeichnung "' . $this->bezeichnung . '" enthält bereits ein "' . get_class($objekt) . '" Objekt mit der Bezeichnung "' . $objekt->bezeichnung . '".');
+					}
+					else
+					{
+						array_push($this->data, $objekt);
+					}
+				}
+			break;
+		}
+	}
+	
+	function Rem(object $objekt)
+	{	
+		if(get_class($this) == get_class($objekt))
+		{
+			throw new ObjectSelfRemovalException('Objekte vom Typ "' . get_class($this) . '" können keine Objekte vom selben Typen aus sich entfernen!');
+		}
+		switch(get_class($this))
+		{
+			case "Kursvorlage":
+				if(get_class($objekt) != "Modul")
+				{
+					throw new InvalidObjectRemovalException('Objekten vom Typ "' . get_class($this) . '" können nur Objekte vom Typ "Modul" entfernt werden!');
+				}
+				else
+				{
+					if(in_array($objekt, $this->data))
+					{
+						throw new ObjectAllreadyInCollectionException('Das "' . get_class($this) . '" Objekt mit der Bezeichnung "' . $this->bezeichnung . '" enthält kein "' . get_class($objekt) . '" Objekt mit der Bezeichnung "' . $objekt->bezeichnung . '".');
+					}
+					else
+					{
+						$index = array_search($objekt, $this->data);
+						array_splice($this->data, $index, 1);
+						$this->Update();
+					}
+				}
+			break;
+			
+			case "Modul":
+				if(get_class($objekt) != "Lernfeld")
+				{
+					throw new InvalidObjectRemovalException('Objekten vom Typ "' . get_class($this) . '" können nur Objekte vom Typ "Lernfeld" entfernt werden!');
+				}
+				else
+				{
+					if(in_array($objekt, $this->data))
+					{
+						throw new ObjectAllreadyInCollectionException('Das "' . get_class($this) . '" Objekt mit der Bezeichnung "' . $this->bezeichnung . '" enthält kein "' . get_class($objekt) . '" Objekt mit der Bezeichnung "' . $objekt->bezeichnung . '".');
+					}
+					else
+					{
+						$index = array_search($objekt, $this->data);
+						array_splice($this->data, $index, 1);
+						$this->Update();
+					}
+				}
+			break;
+			
+			case "Lernfeld":
+				if(get_class($objekt) != "Schwerpunkt")
+				{
+					throw new InvalidObjectRemovalException('Objekten vom Typ "' . get_class($this) . '" können nur Objekte vom Typ "Schwerpunkt" entfernt werden!');
+				}
+				else
+				{
+					if(in_array($objekt, $this->data))
+					{
+						throw new ObjectAllreadyInCollectionException('Das "' . get_class($this) . '" Objekt mit der Bezeichnung "' . $this->bezeichnung . '" enthält kein "' . get_class($objekt) . '" Objekt mit der Bezeichnung "' . $objekt->bezeichnung . '".');
+					}
+					else
+					{
+						$index = array_search($objekt, $this->data);
+						array_splice($this->data, $index, 1);
+					}
+				}
+			break;
+		}
+		
+	}
+	
+	function Update()
+	{
+		if(get_class($this) == "Lernfeld")
+		{
+			throw new ObjectShouldNotBeUpdatedException('Objekte vom Typ "' . get_class($this) . '" können nicht Aktualisiert werden, da die in ihnen befindlichen Objekte keine Eigenschaft "$ue" Implementieren!');
+		}
+		else
+		{
+			$myUE = 0;
+			foreach($this->data as $objekt)
+			{
+				$myUE += $objekt->ue;
+			}
+			$this->ue = $myUE;
+		}
 	}
 }
 ?>

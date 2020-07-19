@@ -17,4 +17,5 @@ class InvalidObjectAdditionException extends Exception {}
 class InvalidObjectRemovalException extends Exception {}
 class ObjectAllreadyInCollectionException extends Exception {}
 class ObjectNotInCollectionException extends Exception {}
+class ObjectShouldNotBeUpdatedException extends Exception {}
 ?>

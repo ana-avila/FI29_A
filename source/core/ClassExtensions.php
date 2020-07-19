@@ -32,7 +32,14 @@ class Schwerpunkt extends KursObjektBasis {}
 // Klassen welche KursObject extenden
 class Kursvorlage extends KursObjekt {}
 class Modul extends KursObjekt {}
-class Lernfeld extends KursObjekt {}
+class Lernfeld extends KursObjekt {
+	//Lernfeld ist die kleinste Basis, sie muss die Dauer der Unterrichtseinheiten enthalten!
+	function __construct(string $bezeichnung, int $ue)
+	{
+		$this->bezeichnung = $bezeichnung;
+		$this->ue = $ue;
+	}
+}
 
 //Klassen welche TrainerObjekt extenden
 class TrainerSchwerpunkt extends TrainerObjekt {}

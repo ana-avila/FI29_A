@@ -24,7 +24,8 @@
  *
  *	TrainerObjekt Objekte sind: TrainerSchwerpunkt, TrainerLernfeld Objekte
  *
- *	Rev: 1.05
+ *	Rev: 1.06
+ 
  *
  *	Autor(en): Andreas Biester
  */
@@ -47,75 +48,69 @@ class Trainer
 	
 	function Add(object $objekt)
 	{
-		if($this == $objekt)
+		if(get_class($this) == get_class($objekt))
 		{
 			throw new ObjectSelfAdditionException('Objekte vom Typ ' . get_class($this) . ' können sich keine Objekte vom selben Typen hinzufügen!');
 		}
+		if(get_class($objekt) != "TrainerSchwerpunkt" && get_class($objekt) != "TrainerLernfeld" && get_class($objekt) != "Urlaubszeitraum")
+		{
+			throw new InvalidObjectAdditionException('Objekte vom Typ ' . get_class($this) . ' können sich nur Objekte vom Typ "TrainerSchwerpunkt", "TrainerLernfeld", "Urlaubszeitraum" hinzufügen! Typ übergeben: ' . get_class($objekt));
+		}
+		elseif(in_array($objekt, $this->schwerpunkte) || in_array($objekt, $this->lernfelder) || in_array($objekt, $this->urlaubszeitraeume))
+		{
+			throw new ObjectAllreadyInCollectionException('Dem ' . get_class($this) . ' Objekt wurde bereits dieses ' . get_class($objekt) . ' Objekt mit der Bezeichnung ' . $objekt->bezeichnung . ' hinzugefügt!');
+		}
 		else
 		{
-			if(get_class($objekt) != "TrainerSchwerpunkt" && get_class($objekt) != "TrainerLernfeld" && get_class($objekt) != "Urlaubszeitraum")
+			switch(get_class($objekt))
 			{
-				throw new InvalidObjectAdditionException('Objekte vom Typ ' . get_class($this) . ' können sich nur Objekte vom Typ "TrainerSchwerpunkt", "TrainerLernfeld", "Urlaubszeitraum" hinzufügen! Typ übergeben: ' . get_class($objekt));
-			}
-			elseif(in_array($objekt, $this->schwerpunkte) || in_array($objekt, $this->lernfelder) || in_array($objekt, $this->urlaubszeitraeume))
-			{
-				throw new ObjectAllreadyInCollectionException('Dem ' . get_class($this) . ' Objekt wurde bereits dieses ' . get_class($objekt) . ' Objekt mit der Bezeichnung ' . $objekt->bezeichnung . ' hinzugefügt!');
-			}
-			else
-			{
-				switch(get_class($objekt))
-				{
-					case "TrainerSchwerpunkt":
-						array_push($this->schwerpunkte, $objekt);
-					break;
-					
-					case "TrainerLernfeld":
-						array_push($this->lernfelder, $objekt);
-					break;
-					
-					case "Urlaubszeitraum":
-						array_push($this->urlaubszeitraeume, $objekt);
-					break;
-				}
+				case "TrainerSchwerpunkt":
+					array_push($this->schwerpunkte, $objekt);
+				break;
+				
+				case "TrainerLernfeld":
+					array_push($this->lernfelder, $objekt);
+				break;
+				
+				case "Urlaubszeitraum":
+					array_push($this->urlaubszeitraeume, $objekt);
+				break;
 			}
 		}
 	}
 	
 	function Rem(object $objekt)
 	{
-		if($this == $objekt)
+		if(get_class($this) == get_class($objekt))
 		{
 			throw new ObjectSelfRemovalException('Objekte vom Typ ' . get_class($this) . ' können sich nicht aus sich selbst entfernen!');
 		}
+		if(get_class($objekt) != "TrainerSchwerpunkt" && get_class($objekt) != "TrainerLernfeld" && get_class($objekt) != "Urlaubszeitraum")
+		{
+			throw new InvalidObjectRemovalException('Aus ' . get_class($this) . ' Objekten können nur Objekte vom Typ "TrainerSchwerpunkt", "TrainerLernfeld" oder "Urlaubszeitraum" entfernt werden! Typ übergeben: ' . get_class($objekt));
+		}
+		elseif(!in_array($objekt, $this->schwerpunkte) && !in_array($objekt, $this->lernfelder) && !in_array($objekt, $this->urlaubszeitraeume))
+		{
+			throw new ObjectNotInCollectionException(get_class($objekt) . ' Objekt ist nicht im ' . get_class($this) . ' Objekt mit Namen ' . $this->vorname . ' ' . $this->nachname . ' vorhanden!');
+		}
 		else
 		{
-			if(get_class($objekt) != "TrainerSchwerpunkt" && get_class($objekt) != "TrainerLernfeld" && get_class($objekt) != "Urlaubszeitraum")
+			switch(get_class($objekt))
 			{
-				throw new InvalidObjectRemovalException('Aus ' . get_class($this) . ' Objekten können nur Objekte vom Typ "TrainerSchwerpunkt", "TrainerLernfeld" oder "Urlaubszeitraum" entfernt werden! Typ übergeben: ' . get_class($objekt));
-			}
-			elseif(!in_array($objekt, $this->schwerpunkte) && !in_array($objekt, $this->lernfelder) && !in_array($objekt, $this->urlaubszeitraeume))
-			{
-				throw new ObjectNotInCollectionException(get_class($objekt) . ' Objekt ist nicht im ' . get_class($this) . ' Objekt mit Namen ' . $this->vorname . ' ' . $this->nachname . ' vorhanden!');
-			}
-			else
-			{
-				switch(get_class($objekt))
-				{
-					case "TrainerSchwerpunkt":
-						$index = array_search($objekt, $this->schwerpunkte);
-						array_splice($this->schwerpunkte, $index, 1);
-					break;
-					
-					case "TrainerLernfeld":
-						$index = array_search($objekt, $this->lernfelder);
-						array_splice($this->lernfelder, $index, 1);
-					break;
-					
-					case "Urlaubszeitraum":
-						$index = array_search($objekt, $this->urlaubszeitraeume);
-						array_splice($this->urlaubszeitraeume, $index, 1);
-					break;
-				}
+				case "TrainerSchwerpunkt":
+					$index = array_search($objekt, $this->schwerpunkte);
+					array_splice($this->schwerpunkte, $index, 1);
+				break;
+				
+				case "TrainerLernfeld":
+					$index = array_search($objekt, $this->lernfelder);
+					array_splice($this->lernfelder, $index, 1);
+				break;
+				
+				case "Urlaubszeitraum":
+					$index = array_search($objekt, $this->urlaubszeitraeume);
+					array_splice($this->urlaubszeitraeume, $index, 1);
+				break;
 			}
 		}
 	}

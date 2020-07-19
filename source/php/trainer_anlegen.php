@@ -27,7 +27,7 @@ if(isset($_POST['trainerAdd']))
 <html lang="de">
 	<head>
 		<meta charset="UTF-8">
-		<title>Index - Kursplaner</title>
+		<title>Trainer Anlegen - Kursplaner</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="expires" content="0">
 	</head>
