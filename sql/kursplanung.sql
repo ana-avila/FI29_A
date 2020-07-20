@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 14. Jul 2020 um 16:36
--- Server-Version: 10.4.11-MariaDB
--- PHP-Version: 7.4.5
+-- Erstellungszeit: 20. Jul 2020 um 09:39
+-- Server-Version: 10.1.40-MariaDB
+-- PHP-Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -83,7 +84,7 @@ CREATE TABLE `kurstrainer` (
 CREATE TABLE `kursvorlage` (
   `kursvorlageid` int(10) UNSIGNED NOT NULL,
   `kursvorlagenname` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,7 +108,7 @@ CREATE TABLE `kursvorlagemodule` (
 CREATE TABLE `lernfelder` (
   `lernfeldid` int(10) UNSIGNED NOT NULL,
   `lernfeldname` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -166,7 +167,7 @@ CREATE TABLE `modullernfelder` (
 CREATE TABLE `schwerpunktthemen` (
   `schwerpunktthemenid` int(10) UNSIGNED NOT NULL,
   `schwerpunktthemenname` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
