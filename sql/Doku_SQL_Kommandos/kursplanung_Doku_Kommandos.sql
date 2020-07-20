@@ -145,6 +145,9 @@ FOREIGN KEY (modulid) REFERENCES modul(modulid),
 FOREIGN KEY (lernfeldid) REFERENCES lernfelder(lernfeldid)
 );
 
+-- Kollation der Datenbank auf utf8 ändern
+
+ALTER DATABASE kursplanung COLLATE = 'utf8_general_ci';
 
 
 
