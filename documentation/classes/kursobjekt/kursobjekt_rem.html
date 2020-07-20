@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<title>KursObjekt::Rem</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="expires" content="0">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<nav class="Path">
+			<ul>
+				<li><a href="../index.html">Klassenübersicht</a></li>
+				<li><a class="link" href="../kursobjektbasis/kursobjektbasis.html">KursObjektBasis</a></li>
+				<li><a class="link" href="kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="kursobjekt_rem.html">KursObjekt::Rem</a></li>
+			</ul>
+		</nav>
+		<main>
+			<div class="intro">
+			<h1 class="introTitle">KursObjekt::Rem</h1>
+			<p>KursObjekt::Rem - Entfernt ein KursObjekt Objekt aus einem anderen KursObjekt Objekt</p>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beschreibung</h2>
+				<div class="beschreibung">
+					<div class="desc">
+						<span class="modifier">public</span>
+						<span class="method"><a class="method" href="kursobjekt_rem.html">Rem </a></span>(
+						<span class="type">object</span>
+						<span class="param">$objekt </span>)
+					</div>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Parameter-Liste</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>objekt</dt>
+						<dd class="para">Das KursObjekt Objekt das entfernt werden soll. Verfügt das zu entfernende KursObjekt Objekt über einen Wert für Unterrichtseinheiten,
+						wird dieser von den Unterrichtseinheiten des KursObjekt Objekt, aus dem es entfernt wird, abgezogen.<br> Der Array dem dieses KursObjekt Objekt zugewiesen wurde,
+						reduziert sich dabei in seiner größe.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beispiel(e)</h2>
+				<div class="beschreibung">
+					<span class="method">&#60 ?php<br></span>
+					<span class="comment">/* KursObjekt mit Bezeichnung, ohne Unterrichtseinheiten erstellen */<br></span>
+					<span class="method">$ko1 =</span> <span class="type">new</span> <span class="method">KursObjekt</span>(<span class="modifier">"Modultest"</span>);
+					<br><br>
+					<span class="comment">/*KursObjekt mit Bezeichnung und Unterrichtseinheiten erstellen */</span>
+					<br>
+					<span class="method">$ko2 =</span> <span class="type">new</span> <span class="method">KursObjekt</span>(<span class="modifier">"Lernfeld Versuch"</span>, <span class="modifier">80</span>);
+					<br>
+					<span class="method">$ko3 =</span> <span class="type">new</span> <span class="method">KursObjekt</span>(<span class="modifier">"Lernfeld die Zweite"</span>, <span class="modifier">80</span>);
+					<br><br>
+					<span class="comment">/* Erstem KursObjekt $ko1 die anderen KursObjekt Objekte $ko2 und $ko3 hinzufügen */</span>
+					<br>
+					<span class="method">$ko1->Add</span></span>(<span class="param">$ko2</span>);
+					<br>
+					<span class="method">$ko1->Add</span></span>(<span class="param">$ko3</span>);
+					<br>
+					<br>
+					<span class="method">?&#62 <br></span>
+					<span class="method">&#60 pre&#62 <br></span>
+					<span class="method">&#60 ?= print_r</span>(<span class="param">$ko1</span>) ?&#62
+					<br>
+					<span class="method">&#60 /pre&#62 </span>
+					<br>
+					<span class="comment">/* Erzeugt folgende Ausgabe: */</span>
+					<br>
+					<img class="exImage" src="img/example_rem_1.png">
+					<br><br>
+					<span class="method">$ko1->Rem</span></span>(<span class="param">$ko2</span>);
+					<br>
+					<br>
+					<span class="method">?&#62 <br></span>
+					<span class="method">&#60 pre&#62 <br></span>
+					<span class="method">&#60 ?= print_r</span>(<span class="param">$ko1</span>) ?&#62
+					<br>
+					<span class="method">&#60 /pre&#62 </span>
+					<br>
+					<span class="comment">/* Erzeugt folgende Ausgabe: */</span>
+					<br>
+					<img class="exImage" src="img/example_rem_2.png">
+					<br><br>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

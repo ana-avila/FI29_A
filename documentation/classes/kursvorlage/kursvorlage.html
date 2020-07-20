@@ -2,7 +2,7 @@
 <html lang="de">
 	<head>
 		<meta charset="UTF-8">
-		<title>KursObjekt</title>
+		<title>Kursvorlage</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="expires" content="0">
 		<link rel="stylesheet" href="../css/style.css">
@@ -12,21 +12,21 @@
 			<ul>
 				<li><a href="../index.html">Klassenübersicht</a></li>
 				<li><a class="link" href="../kursobjektbasis/kursobjektbasis.html">KursObjektBasis</a></li>
-				<li><a class="link" href="kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="../kursobjekt/kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="kursvorlage.html">Kursvorlage</a></li>
 			</ul>
 		</nav>
 		<main>
 			<div class="intro">
-			<h1 class="introTitle">KursObjekt Klasse</h1>
-			<p>Repräsentiert KursObjekt Objekte für Kursvorlagen.</p>
-			<p>Diese Klasse spezialisiert die <a class="method" href="../kursobjektbasis/kursobjektbasis.html">KursObjektBasis</a> Klasse</p>
-			<p>Diese Klasse bildet die Grundlage für die Klassen <a class="method" href="../kursvorlage/kursvorlage.html">Kursvorlage</a>, <a class="method" href="../modul/modul.html">Modul</a>, <a class="method" href="../lernfeld/lernfeld.html">Lernfeld</a></p>
+			<h1 class="introTitle">Kursvorlage Klasse</h1>
+			<p>Repräsentiert Kursvorlage Objekte für Kursvorlagen.</p>
+			<p>Diese Klasse spezialisiert die <a class="method" href="../kursobjekt/kursobjekt.html">KursObjekt</a> Klasse</p>
 			</div>
 			<div class="ref">
 				<h2 class="refTitle">Klassenbeschreibung</h2>
 				<div class="beschreibung">
 					<div>
-						<span class="class">KursObjekt</span>{
+						<span class="class">Kursvorlage</span>{
 					</div>
 					<div class="desc">
 						<span class="modifier">public</span>
@@ -48,7 +48,7 @@
 					</div>
 					<div class="desc">
 						<span class="modifier">public</span>
-						<span class="method"><a class="method" href="kursobjekt_update.html">Update </a></span>( void )
+						<span class="method"><a class="method" href="kursobjektbasis_update.html">Update </a></span>( void )
 					</div>
 					<div>
 					}
@@ -60,11 +60,11 @@
 				<div class="beschreibung">
 					<dl>
 						<dt><span class="type">string</span> bezeichnung</dt>
-						<dd class="para">Variable zum Speichern einer Bezeichnung für das KursObjekt Objekt</dd>
+						<dd class="para">Variable zum Speichern einer Bezeichnung für das Kursvorlage Objekt</dd>
 						<dt><span class="type">int</span> ue</dt>
-						<dd class="para">Variable zum Speichern der Anzahl an Unterrichtseinheiten für das KursObjekt Objekt</dd>
+						<dd class="para">Variable zum Speichern der Anzahl an Unterrichtseinheiten für das Kursvorlage Objekt</dd>
 						<dt><span class="type">array</span> data</dt>
-						<dd class="para">Variable zum Hinzufügen von KursObjekt Objekten zum KursObjekt Objekt</dd>
+						<dd class="para">Variable zum Hinzufügen von KursObjekt Objekten zum Kursvorlage Objekt</dd>
 					</dl>
 				</div>
 			</div>
@@ -72,17 +72,17 @@
 				<h2 class="refTitle">Inhaltsverzeichnis</h2>
 				<div class="beschreibung">
 					<ul>
-						<li><span class="method"><a class="method" href="kursobjekt_construct.html">KursObjekt::__construct</a></span>
-						- Erstellt ein KursObjekt Objekt bei Erfolg.
+						<li><span class="method"><a class="method" href="kursobjekt_construct.html">Kursvorlage::__construct</a></span>
+						- Erstellt ein Kursvorlage Objekt bei Erfolg.
 						</li>
-						<li><span class="method"><a class="method" href="kursobjekt_add.html">KursObjekt::Add</a></span>
-						- Fügt ein KursObjekt Objekt hinzu.
+						<li><span class="method"><a class="method" href="kursobjekt_construct.html">Kursvorlage::Add</a></span>
+						- Fügt ein Modul Objekt hinzu.
 						</li>
-						<li><span class="method"><a class="method" href="kursobjekt_rem.html">KursObjekt::Rem</a></span>
-						- Entfernt ein KursObjekt Objekt.
+						<li><span class="method"><a class="method" href="kursobjekt_construct.html">Kursvorlage::Rem</a></span>
+						- Entfernt ein Modul Objekt.
 						</li>
-						<li><span class="method"><a class="method" href="kursobjekt_update.html">KursObjekt::Update</a></span>
-						- Löst eine Aktualisierung der $ue Eigenschaft eines KursObjekt Objektes aus.
+						<li><span class="method"><a class="method" href="kursobjekt_construct.html">Kursvorlage::Update</a></span>
+						- Löst eine Aktualisierung der $ue Eigenschaft eines Kursvorlage Objektes aus.
 						</li>
 					</ul>
 				</div>

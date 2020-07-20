@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<title>KursObjekt::Uodate</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="expires" content="0">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<nav class="Path">
+			<ul>
+				<li><a href="../index.html">Klassenübersicht</a></li>
+				<li><a class="link" href="../kursobjektbasis/kursobjektbasis.html">KursObjektBasis</a></li>
+				<li><a class="link" href="kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="kursobjekt_update.html">KursObjekt::Update</a></li>
+			</ul>
+		</nav>
+		<main>
+			<div class="intro">
+			<h1 class="introTitle">KursObjekt::Update</h1>
+			<p>KursObjekt::Update - Sorgt fur eine Neuermittlung der anzahl an Unterrichtseinheiten eines KursObjekt Objekt durch
+			summieren der Unterrichtseinheiten aller KursObjekt Objekte die es enthält.</p>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beschreibung</h2>
+				<div class="beschreibung">
+					<div class="desc">
+						<span class="modifier">public</span>
+						<span class="method"><a class="method" href="kursobjekt_update.html">Update </a></span>()
+					</div>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beispiel(e)</h2>
+				<div class="beschreibung">
+					<span class="method">&#60 ?php<br></span>
+					<span class="comment">/* KursObjekt mit Bezeichnung, ohne Unterrichtseinheiten erstellen */<br></span>
+					<span class="method">$ko1 =</span> <span class="type">new</span> <span class="method">KursObjekt</span>(<span class="modifier">"Modultest"</span>);
+					<br><br>
+					<span class="comment">/*KursObjekt mit Bezeichnung und Unterrichtseinheiten erstellen */</span>
+					<br>
+					<span class="method">$ko2 =</span> <span class="type">new</span> <span class="method">KursObjekt</span>(<span class="modifier">"Lernfeld Versuch"</span>, <span class="modifier">80</span>);
+					<br>
+					<span class="method">$ko3 =</span> <span class="type">new</span> <span class="method">KursObjekt</span>(<span class="modifier">"Lernfeld die Zweite"</span>, <span class="modifier">80</span>);
+					<br><br>
+					<span class="comment">/* Erstem KursObjekt $ko1 das KursObjekt $ko2 hinzufügen - die Dauer vom Kursobjekt $ko1 sollte sich korrekt erhöhen. */</span>
+					<br>
+					<span class="method">$ko1->Add</span></span>(<span class="param">$ko2</span>);
+					<br>
+					<span class="method">$ko2->Add</span></span>(<span class="param">$ko3</span>);
+					<br>
+					<br>
+					<span class="comment">/* Zweitem KursObjekt $ko2 das KursObjekt $ko3 hinzufügen - die Dauer vom KursObjekt $ko2 sollte sich korrekt erhöhen, 
+					jedoch besitzt das KursObjekt $ko1 darüber keine kenntnis. Damit sich seine dauer korrekt erhöht, stoßen wir das Update dafür manuell an. */</span>
+					<br>
+					<span class="method">$ko1->Update</span>();
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
