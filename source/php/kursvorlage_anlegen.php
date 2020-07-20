@@ -1,6 +1,9 @@
 <?php
 include_once("../core/Exceptions.php");
 include_once("../core/ClassExtensions.php");
+include_once("../core/Kursvorlage.php");
+include_once("../core/Modul.php");
+include_once("../core/Lernfeld.php");
 
 session_start();
 
@@ -26,17 +29,18 @@ if(isset($_POST['addMod']))
 	{
 		$kv = $_SESSION['kvObject'];
 		$mod = new Modul($_POST['mod']);
+		
 		if(count($kv->data) < 8)
 		{
 			try
 			{
 				$kv->Add($mod);
-				$_SESSION['kvObject'] = $kv;
 			}
 			catch(Exception $e)
 			{
 				echo $e;
 			}
+			$_SESSION['kvObject'] = $kv;
 		}
 		unset($_POST['mod']);
 		unset($_POST['addMod']);
@@ -50,28 +54,49 @@ if(isset($_POST['addLF']))
 		$kv = $_SESSION['kvObject'];
 		$lfMod = $_POST['lfMod'];
 		$lf = new Lernfeld($_POST['lf'], $_POST['lfUE']);
+		
 		try
 		{
 			$kv->data[$lfMod]->Add($lf);
-			try
-			{
-				$kv->Update();
-			}
-			catch(Exception $e)
-			{
-				echo $e;
-			}
-			
-			$_SESSION['kvObject'] = $kv;
 		}
 		catch(Exception $e)
 		{
 			echo $e;
 		}
+		
+		$kv->Update();
+		$_SESSION['kvObject'] = $kv;
+		
 		unset($_POST['lf']);
 		unset($_POST['lfUE']);
 		unset($_POST['addLF']);
 	}
+}
+
+if(isset($_POST['addSp']))
+{
+	if(isset($_POST['sp']) && !empty($_POST['sp']))
+	{
+		$kv = $_SESSION['kvObject'];
+		$mod = $_POST['spLfMod'];
+		$lf = $_POST['spLf'];
+		$schwerpunkt = new Schwerpunkt($_POST['sp']);
+		try
+		{
+			$kv->data[$mod]->data[$lf]->Add($schwerpunkt);
+		}
+		catch(Exception $e)
+		{
+			echo $e;
+		}
+		$_SESSION['kvObject'] = $kv;
+		
+		unset($_POST['spLf']);
+		unset($_POST['spLfMod']);
+		unset($_POST['sp']);
+		unset($_POST['addSp']);
+	}
+	
 }
 ?>
 <!DOCTYPE html>
@@ -137,6 +162,8 @@ if(isset($_POST['addLF']))
 						<input type="submit" name="modMod" value="Modul Aktualisieren">
 					</form>
 		<?php
+					if(isset($modul->data) && !empty($modul->data))
+					{
 						foreach($modul->data as $lf)
 						{
 							$index = array_search($modul, $kv->data)
@@ -148,19 +175,46 @@ if(isset($_POST['addLF']))
 								<input type="submit" name="modLf" value="Lernfeld Aktualisieren">
 							</form>
 		<?php
-						}
-		?>		
-					<form method="post">
-						<input type="text" name="lf" placeholder="Name d. Lernfelds.." style="width: 400px; margin-left: 4em;">
-						<input type="number" name="lfUE" min="8" value="8">
-						<input type="hidden" name="lfMod" value="<?= $index ?>">
-						<input type="submit" name="addLF" value="Lernfeld Anlegen">
-					</form>
-					</div>
+							if(isset($lf->data) && !empty($lf->data))
+							{
+								foreach($lf->data as $schwerpunkt)
+								{
+									$indexMod = array_search($modul, $kv->data);
+									$indexLF = array_search($lf, $modul->data);
+		?>
+									<form method="post">
+										<input type="text" name="sp" value="<?= $schwerpunkt->bezeichnung ?>" style="width: 400px; margin-left: 6em;">
+										<input type="hidden" name="spLfMod" value="<?= $indexMod ?>"> 
+										<input type="hidden" name="spLf" value="<?= $indexLF ?>">
+										<input type="submit" name="modSp" value="Schwerpunkt Aktualisieren">
+									</form>
+		<?php						
+								}
+							}
+							$indexLF = array_search($lf, $modul->data);
+		?>
+							<form method="post">
+										<input type="text" name="sp" placeholder="Name d. Schwerpunkts.." style="width: 400px; margin-left: 6em;">
+										<input type="hidden" name="spLfMod" value="<?= $index ?>"> 
+										<input type="hidden" name="spLf" value="<?= $indexLF ?>">
+										<input type="submit" name="addSp" value="Schwerpunkt Hinzufügen">
+							</form>
+		<?php
+						}	
+					}
+		?>
+						
+						<form method="post">
+							<input type="text" name="lf" placeholder="Name d. Lernfelds.." style="width: 400px; margin-left: 4em;">
+							<input type="number" name="lfUE" min="8" value="8">
+							<input type="hidden" name="lfMod" value="<?= $index ?>">
+							<input type="submit" name="addLF" value="Lernfeld Anlegen">
+						</form>
+						</div>
 		<?php
 					}
 				}
-				if(!isset($_SESSION['modList']) || count($_SESSION['modList']) < 8)
+				if(count($_SESSION['kvObject']->data) < 8)
 				{
 		?>
 				<div class="modAdd">
