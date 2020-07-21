@@ -149,12 +149,26 @@ FOREIGN KEY (lernfeldid) REFERENCES lernfelder(lernfeldid)
 
 ALTER DATABASE kursplanung COLLATE = 'utf8_general_ci';
 
+-- Doppelte Einträge der dauer in der Tabelle moduldauer verhindern
 
+ALTER TABLE moduldauer ADD UNIQUE(dauer);
 
+-- Attribut "dauer" den Tabellen lernfelder und kursvorlag hinzufügen
 
+ALTER TABLE lernfelder ADD dauer INT NOT NULL AFTER description;
 
+ALTER TABLE kursvorlage ADD dauer INT NOT NULL AFTER description;
 
+-- Autoincrement auf null setzen
 
+ALTER TABLE kursvorlage AUTO_INCREMENT = 0;
+ALTER TABLE kursvorlagemodule AUTO_INCREMENT = 0;
+ALTER TABLE modul AUTO_INCREMENT = 0;
+ALTER TABLE lernfelder AUTO_INCREMENT = 0;
+ALTER TABLE modullernfelder AUTO_INCREMENT = 0;
+ALTER TABLE moduldauer AUTO_INCREMENT = 0;
+ALTER TABLE lernfelderschwerpunktthemen AUTO_INCREMENT = 0;
+ALTER TABLE schwerpunktthemen AUTO_INCREMENT = 0;
 
 
 
