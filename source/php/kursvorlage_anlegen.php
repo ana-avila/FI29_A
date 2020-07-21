@@ -137,12 +137,12 @@ if(isset($_POST['addSp']))
 			if(isset($_SESSION['kvObject']) && !empty($_SESSION['kvObject']))
 			{
 				$kv = $_SESSION['kvObject'];
-				?>
-			<form method="post">
-				<input type="text" name="kvlg" value="<?= $kv->bezeichnung ?>" style="width: 400px;">
-				<input type="hidden" name="editKvlg">
-				<input type="submit" name="modKvlg" value="Kursvorlage Aktualisieren">
-			</form>
+		?>
+				<form method="post">
+					<input type="text" name="kvlg" value="<?= $kv->bezeichnung ?>" style="width: 400px;">
+					<input type="hidden" name="editKvlg">
+					<input type="submit" name="modKvlg" value="Kursvorlage Aktualisieren">
+				</form>
 		<?php
 				/*
 				 *	Existiert ein Modul Objekt, so existiert in diesem Kontext immer auch eine Liste
@@ -155,12 +155,12 @@ if(isset($_POST['addSp']))
 					{
 						$index = array_search($modul, $kv->data);
 		?>
-					<div class="modContent">
-					<form method="post">
-						<input type="text" name="mod<?= $index ?>" value="<?= $modul->bezeichnung ?>" style="width: 400px; margin-left: 2em;">
-						<input type="hidden" name="editMod" value="<?= $index ?>">
-						<input type="submit" name="modMod" value="Modul Aktualisieren">
-					</form>
+						<div class="modContent">
+						<form method="post">
+							<input type="text" name="mod<?= $index ?>" value="<?= $modul->bezeichnung ?>" style="width: 400px; margin-left: 2em;">
+							<input type="hidden" name="editMod" value="<?= $index ?>">
+							<input type="submit" name="modMod" value="Modul Aktualisieren">
+						</form>
 		<?php
 					if(isset($modul->data) && !empty($modul->data))
 					{
@@ -242,6 +242,9 @@ if(isset($_POST['addSp']))
 		<form method="post">
 			<input type="submit" name="sessionDestroy" value="Session Beenden">
 		</form>
+		<form method="post" action="kursvorlagen_abschicken.php">
+			<input type="submit" name="sendKv" value="Abschicken">
+		</form>		
 		</main>
 		<?php
 			if(isset($_SESSION['kvObject']))
@@ -253,6 +256,11 @@ if(isset($_POST['addSp']))
 			</pre>
 		<?php
 			}
+			?>
+<pre>
+<?= print_r($_SESSION) ?>
+</pre>
+<?php
 		?>
 	</body>
 </html>
