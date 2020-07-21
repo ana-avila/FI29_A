@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 20. Jul 2020 um 09:39
--- Server-Version: 10.1.40-MariaDB
--- PHP-Version: 7.3.5
+-- Erstellungszeit: 21. Jul 2020 um 14:14
+-- Server-Version: 10.4.11-MariaDB
+-- PHP-Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -84,7 +83,8 @@ CREATE TABLE `kurstrainer` (
 CREATE TABLE `kursvorlage` (
   `kursvorlageid` int(10) UNSIGNED NOT NULL,
   `kursvorlagenname` varchar(100) NOT NULL,
-  `description` text
+  `description` text DEFAULT NULL,
+  `dauer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -108,7 +108,8 @@ CREATE TABLE `kursvorlagemodule` (
 CREATE TABLE `lernfelder` (
   `lernfeldid` int(10) UNSIGNED NOT NULL,
   `lernfeldname` varchar(100) NOT NULL,
-  `description` text
+  `description` text DEFAULT NULL,
+  `dauer` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -167,7 +168,7 @@ CREATE TABLE `modullernfelder` (
 CREATE TABLE `schwerpunktthemen` (
   `schwerpunktthemenid` int(10) UNSIGNED NOT NULL,
   `schwerpunktthemenname` varchar(100) NOT NULL,
-  `description` text
+  `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -318,7 +319,8 @@ ALTER TABLE `modul`
 -- Indizes für die Tabelle `moduldauer`
 --
 ALTER TABLE `moduldauer`
-  ADD PRIMARY KEY (`dauerid`);
+  ADD PRIMARY KEY (`dauerid`),
+  ADD UNIQUE KEY `dauer` (`dauer`);
 
 --
 -- Indizes für die Tabelle `modullernfelder`
