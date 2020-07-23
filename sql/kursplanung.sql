@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Jul 2020 um 14:14
+-- Erstellungszeit: 23. Jul 2020 um 16:16
 -- Server-Version: 10.4.11-MariaDB
 -- PHP-Version: 7.4.5
 
@@ -29,8 +29,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `admindid` int(10) UNSIGNED NOT NULL,
-  `vorname` varchar(100) NOT NULL,
-  `nachname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `pwhash` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL
@@ -147,6 +145,14 @@ CREATE TABLE `moduldauer` (
   `dauer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Daten für Tabelle `moduldauer`
+--
+
+INSERT INTO `moduldauer` (`dauerid`, `dauer`) VALUES
+(3, 20),
+(1, 40);
+
 -- --------------------------------------------------------
 
 --
@@ -220,7 +226,7 @@ CREATE TABLE `trainerurlaub` (
   `id` int(10) UNSIGNED NOT NULL,
   `trainerid` int(10) UNSIGNED NOT NULL,
   `urlaubstart` date NOT NULL,
-  `urlaubende` date DEFAULT NULL
+  `urlaubende` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -411,73 +417,73 @@ ALTER TABLE `kurstrainer`
 -- AUTO_INCREMENT für Tabelle `kursvorlage`
 --
 ALTER TABLE `kursvorlage`
-  MODIFY `kursvorlageid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `kursvorlageid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `kursvorlagemodule`
 --
 ALTER TABLE `kursvorlagemodule`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `lernfelder`
 --
 ALTER TABLE `lernfelder`
-  MODIFY `lernfeldid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `lernfeldid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `lernfelderschwerpunktthemen`
 --
 ALTER TABLE `lernfelderschwerpunktthemen`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `modul`
 --
 ALTER TABLE `modul`
-  MODIFY `modulid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `modulid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `moduldauer`
 --
 ALTER TABLE `moduldauer`
-  MODIFY `dauerid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `dauerid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `modullernfelder`
 --
 ALTER TABLE `modullernfelder`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `schwerpunktthemen`
 --
 ALTER TABLE `schwerpunktthemen`
-  MODIFY `schwerpunktthemenid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `schwerpunktthemenid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT für Tabelle `trainer`
 --
 ALTER TABLE `trainer`
-  MODIFY `trainerid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `trainerid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT für Tabelle `trainerlernfelder`
 --
 ALTER TABLE `trainerlernfelder`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT für Tabelle `trainerschwerpunktthemen`
 --
 ALTER TABLE `trainerschwerpunktthemen`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT für Tabelle `trainerurlaub`
 --
 ALTER TABLE `trainerurlaub`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT für Tabelle `trainerzeitzuweisung`
