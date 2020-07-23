@@ -57,15 +57,6 @@ try
 	{
 		$spName = $schwerpunkt->bezeichnung;
 		$countOfSpInDatabase = $dbh->query("SELECT COUNT(schwerpunktthemenid) FROM $sptable WHERE schwerpunktthemenname='$spName'")->fetchAll(PDO::FETCH_ASSOC)[0]["COUNT(schwerpunktthemenid)"];
-		?>
-		<pre>
-		<?php
-		print_r("schwerpunkt $spName: ");
-		print_r($countOfSpInDatabase);
-		print_r(gettype($countOfSpInDatabase));
-		?>
-		</pre>
-		<?php
 		if($countOfSpInDatabase == "0")
 		{
 			$spNameStmt->execute(array($spName));
@@ -75,8 +66,6 @@ try
 		{
 			$spTyp = 1;
 		}
-		print_r("schwerpunkttyp");
-		print_r($spTyp);
 		$trSpCount = $dbh->query("SELECT COUNT(*) FROM $trainersptable WHERE (trainerid=$trId AND schwerpunktthemenid=$spId AND schwerpunktthementyp=$spTyp)")->fetchAll(PDO::FETCH_ASSOC)[0]["COUNT(*)"];
 		if($trSpCount == "0")
 		{
@@ -99,15 +88,6 @@ try
 	{
 		$lfName = $lernfeld->bezeichnung;
 		$countOfLfInDatabase = $dbh->query("SELECT COUNT(lernfeldid) FROM $lftable WHERE lernfeldname='$lfName'")->fetchAll(PDO::FETCH_ASSOC)[0]["COUNT(lernfeldid)"];
-		?>
-		<pre>
-		<?php
-		print_r("lernfeld $lfName: ");
-		print_r($countOfLfInDatabase);
-		print_r(gettype($countOfLfInDatabase));
-		?>
-		</pre>
-		<?php
 		if($countOfLfInDatabase == "0")
 		{
 			?>
