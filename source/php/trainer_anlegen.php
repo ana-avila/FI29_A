@@ -17,9 +17,85 @@ if(isset($_POST['trainerAdd']))
 	if((isset($_POST['vorname']) && !empty($_POST['vorname'])) && (isset($_POST['nachname']) && !empty($_POST['nachname'])) && (isset($_POST['email']) && !empty($_POST['email'])))
 	{
 		$trainer = new Trainer($_POST['vorname'], $_POST['nachname'], $_POST['email']);
-		$trainer = json_encode($trainer);
 		$_SESSION['trainerObject'] = $trainer;
 	}
+}
+
+if(isset($_POST['addSP']))
+{
+	if((isset($_POST['schwerpunkt']) && !empty($_POST['schwerpunkt'])) && (isset($_POST['primaer']) && !empty($_POST['primaer'])))
+	{
+		$trainer = $_SESSION['trainerObject'];
+		if($_POST['primaer'] == "true")
+		{
+			$schwerpunkt = new TrainerSchwerpunkt($_POST['schwerpunkt'], true);
+		}
+		else
+		{
+			$schwerpunkt = new TrainerSchwerpunkt($_POST['schwerpunkt']);
+		}
+		try
+			{
+				$trainer->Add($schwerpunkt);
+			}
+			catch(Exception $e)
+			{
+				echo $e;
+			}
+			$_SESSION['trainerObject'] = $trainer;		
+	}
+	unset($_POST['addSP']);
+	unset($_POST['schwerpunkt']);
+	unset($_POST['primaer']);
+}
+
+if(isset($_POST['addLF']))
+{
+	if((isset($_POST['lernfeld']) && !empty($_POST['lernfeld'])) && (isset($_POST['primaer']) && !empty($_POST['primaer'])))
+	{
+		$trainer = $_SESSION['trainerObject'];
+		if($_POST['primaer'] == "true")
+		{
+			$lernfeld = new TrainerLernfeld($_POST['lernfeld'], true);
+		}
+		else
+		{
+			$lernfeld = new TrainerLernfeld($_POST['lernfeld']);
+		}
+		try
+			{
+				$trainer->Add($lernfeld);
+			}
+			catch(Exception $e)
+			{
+				echo $e;
+			}
+			$_SESSION['trainerObject'] = $trainer;		
+	}
+	unset($_POST['addLF']);
+	unset($_POST['lernfeld']);
+	unset($_POST['primaer']);
+}
+
+if(isset($_POST['addUZ']))
+{
+	if((isset($_POST['anfang']) && !empty($_POST['anfang'])) && (isset($_POST['ende']) && !empty($_POST['ende'])))
+	{
+		$trainer = $_SESSION['trainerObject'];
+		$ulaubszr = new Urlaubszeitraum($_POST['anfang'], $_POST['ende']);
+		try
+			{
+				$trainer->Add($ulaubszr);
+			}
+			catch(Exception $e)
+			{
+				echo $e;
+			}
+			$_SESSION['trainerObject'] = $trainer;		
+	}
+	unset($_POST['addUZ']);
+	unset($_POST['anfang']);
+	unset($_POST['ende']);
 }
 
 ?>
@@ -35,7 +111,7 @@ if(isset($_POST['trainerAdd']))
 		<?php
 			if(isset($_SESSION['trainerObject']))
 			{
-				$trainer = json_decode($_SESSION['trainerObject']);
+				$trainer =($_SESSION['trainerObject']);
 				?>
 				<label for="vn">Objekt-Vorname: </label>
 				<input type="text" id="vn" name="vorname" value="<?= $trainer->vorname ?>">
@@ -44,93 +120,114 @@ if(isset($_POST['trainerAdd']))
 				<label for="en">Objekt-Email: </label>
 				<input type="email" id="en" name="email" value="<?= $trainer->email ?>">
 				<?php
-					/*	if(count($trainer->schwerpunkte) > 0)
-					 *	{
-					 *		HIER SCHLEIFENLOGIK UM SCHWERPUNKT OBJEKTE AUSZULESEN UND ANZUZEIGEN
-					 *		foreach($trainer->schwerpunkte as $schwerpunt)
-					 *		{
-					 *			hier zugriff auf das aktuelle element.
-					 *			//Ermitteln an welcher position im array das aktuelle element sich befindet
-					 *			$index = array_search($schwerpunkt, $trainer->schwerpunkte);
-					 *			$schwerpunkt->bezeichnung
-					 *			$schwerpunkt->primaer (ist boolean!)
-					 *
-					 *			Unsichtbares Input-Element um sich selbst leichter die Möglichkeit
-					 *			zu Schaffen, zu indentifizieren welches der Objekte Verändert werden muss.
-					 *
-					 *			<input type="hidden" name="editSP" value="$index">;
-					 *
-					 *			//Auslesen der Zahl
-					 *			$edit = $_POST['editSP'];
-					 *			//Bilden des Zugriffsschlüssel für $_POST
-					 *			$edit = 'schwerpunkt' + $edit;
-					 *			//Auslesen der benötigten Informationen
-					 *			$_POST[$edit];
-					 *		}
-					 *	}					 
-					 */
-					 /*
-						if(count($trainer->schwerpunkte) > 0)
+					if(count($trainer->schwerpunkte) > 0)
+					{
+						foreach($trainer->schwerpunkte as $schwerpunkt)
 						{
-							foreach($trainer->schwerpunkte as $schwerpunkt)
-							{
-													<zu suchende element>, <array in dem gesucht wird>
-								$index = array_search($schwerpunkt, $trainer->schwerpunkt);
-								?>
-								<form method="post">
-									<label for="sp<?= $index ?>">Schwerpunkt </label>
-									<input type="text" id="sp<?= $index ?>" name="schwerpunkt<?= $index ?>" value="<?= $schwerpunkt->bezeichnung">
-									<input type="radio" id="prim<?= $index ?>" name="primaer<?= $index ?>" value="true">
-									<label for="prim<?= $index ?>">Primär</label>
-									<input type="radio" id="sek<?= $index ?>" name="primaer<?= $index ?>" value="false">
-									<label for="sek<?= $index ?>">Sekundär</label>
-									<input type="hidden" name="editSP" value="<?= $index ?>">
-									<input type="submit" name="modSP" value="Aktualisieren">
-								</form>
+												
+							$index = array_search($schwerpunkt, $trainer->schwerpunkte);
+							?>
+							<form method="post">
+								<label for="sp<?= $index ?>">Schwerpunkt </label>
+								<input type="text" id="sp<?= $index ?>" name="schwerpunkt<?= $index ?>" value="<?= $schwerpunkt->bezeichnung?>">
 								<?php
-							}
+								if($schwerpunkt->primaer == 1){
+								?>
+								<input type="radio" id="prim<?= $index ?>" name="primaer<?= $index ?>" value="true" checked>	
+								<label for="prim<?= $index ?>">Primär</label>
+								<input type="radio" id="sek<?= $index ?>" name="primaer<?= $index ?>" value="false">
+								<label for="sek<?= $index ?>">Sekundär</label>									
+								<?php
+								}
+								else {
+								?>
+								<input type="radio" id="prim<?= $index ?>" name="primaer<?= $index ?>" value="true">	
+								<label for="prim<?= $index ?>">Primär</label>
+								<input type="radio" id="sek<?= $index ?>" name="primaer<?= $index ?>" value="false" checked>
+								<label for="sek<?= $index ?>">Sekundär</label>
+								<?php										
+								}
+								?>								
+								<input type="hidden" name="editSP" value="<?= $index ?>">
+								<input type="submit" name="modSP" value="Aktualisieren">
+							</form>
+							<?php
 						}
-					 */
+					}					 
+				?>
+					<form method="post">
+						<label for="sp">Schwerpunkt </label>
+						<input type="text" id="sp" name="schwerpunkt" value=""/>
+						<input type="radio" id="prim" name="primaer" value="true">
+						<label for="prim">Primär</label>
+						<input type="radio" id="sek" name="primaer" value="false">
+						<label for="sek">Sekundär</label>
+						<input type="submit" name="addSP" value="Schwerpunkt hinzufügen">
+					</form>
+				<?php
+					if(count($trainer->lernfelder) > 0)
+					{
+						foreach($trainer->lernfelder as $lernfeld)
+						{
+												
+							$index = array_search($lernfeld, $trainer->lernfelder);
+							?>
+							<form method="post">
+								<label for="lf<?= $index ?>">Lernfeld </label>
+								<input type="text" id="lf<?= $index ?>" name="lernfeld<?= $index ?>" value="<?= $lernfeld->bezeichnung?>">
+								<?php
+								if($lernfeld->primaer == 1){
+								?>
+								<input type="radio" id="prim<?= $index ?>" name="primaer<?= $index ?>" value="true" checked>	
+								<label for="prim<?= $index ?>">Primär</label>
+								<input type="radio" id="sek<?= $index ?>" name="primaer<?= $index ?>" value="false">
+								<label for="sek<?= $index ?>">Sekundär</label>									
+								<?php
+								}
+								else {
+								?>
+								<input type="radio" id="prim<?= $index ?>" name="primaer<?= $index ?>" value="true">	
+								<label for="prim<?= $index ?>">Primär</label>
+								<input type="radio" id="sek<?= $index ?>" name="primaer<?= $index ?>" value="false" checked>
+								<label for="sek<?= $index ?>">Sekundär</label>
+								<?php										
+								}
+								?>								
+								<input type="hidden" name="editLF" value="<?= $index ?>">
+								<input type="submit" name="modLF" value="Aktualisieren">
+							</form>
+							<?php
+						}
+					}					 
 				?>
 				<form method="post">
-					<label for="sp">Schwerpunkt </label>
-					<input type="text" id="sp" name="schwerpunkt" value=""/>
+					<label for="lf">Lernfeld </label>
+					<input type="text" id="lf" name="lernfeld" value=""/>
 					<input type="radio" id="prim" name="primaer" value="true">
 					<label for="prim">Primär</label>
 					<input type="radio" id="sek" name="primaer" value="false">
 					<label for="sek">Sekundär</label>
-					<input type="submit" name="addSP" value="Schwerpunkt hinzufügen">
-				</form>
-				<?php
-					/*
-					 *	HIER SCHLEIFENLOGIK UM Lernfeld OBJEKTE AUSZULESEN UND ANZUZEIGEN
-					 *	foreach($trainer->lernfelder as $lernfeld)
-					 *	{
-					 *		hier zugriff auf das aktuelle element.
-					 *		$lernfeld->bezeichnung
-					 *		$lernfeld->primaer (ist boolean!)
-					 *	}
-					 */
-				?>
-				<form method="post">
-					<label for="sp">Lernfeld </label>
-					<input type="text" id="sp" value=""/>
-					<input type="radio" id="prim" name="primaer" value="primaer">
-					<label for="prim">Primär</label>
-					<input type="radio" id="sek" name="primaer" value="sekundaer">
-					<label for="sek">Sekundär</label>
 					<input type="submit" name="addLF" value="Lernfeld hinzufügen">
 				</form>
 				<?php
-					/*
-					 *	HIER SCHLEIFENLOGIK UM Urlaubszeitraum OBJEKTE AUSZULESEN UND ANZUZEIGEN
-					 *	foreach($trainer->Urlaubszeitraeume as $urlaubszeitraum)
-					 *	{
-					 *		hier zugriff auf das aktuelle element.
-					 *		$Urlaubszeitraum->anfang
-					 *		$Urlaubszeitraum->ende
-					 *	}
-					 */
+					if(count($trainer->urlaubszeitraeume) > 0)
+					{
+						foreach($trainer->urlaubszeitraeume as $urlaubszeitraum)
+						{					
+							$index = array_search($urlaubszeitraum, $trainer->urlaubszeitraeume);
+							?>
+							<form method="post">
+								<label>Urlaubszeitraum </label>
+								<label for="anf<?= $index ?>">Von </label>
+								<input type="date" id="anf<?= $index ?>" name="anfang<?= $index ?>" value="<?= $urlaubszeitraum->anfang?>"/>
+								<label for="end<?= $index ?>">Bis </label>
+								<input type="date" id="end<?= $index ?>" name="ende<?= $index ?>" value="<?= $urlaubszeitraum->ende?>"/>
+								<input type="hidden" name="editUZ" value="<?= $index ?>">
+								<input type="submit" name="modUZ" value="Aktualisieren">							
+							</form>
+							<?php
+						}
+					}
 				?>
 				<form method="post">
 					<label>Urlaubszeitraum </label>
@@ -164,9 +261,12 @@ if(isset($_POST['trainerAdd']))
 			<?php
 			}
 		?>
-		<form action="trainerAdd.php" method="post">
+		<form action="trainer_abschicken.php" method="post">
 			<input type="hidden" name="tObject" value="">
 			<input type="submit" name="tAdd" value="Trainer in Datenbank eintragen.">
 		</form>
+		<pre>
+		<?= print_r($_SESSION) ?>
+		</pre>
 	</body>
 </html>
