@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<title>Lernfeld::Add</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="expires" content="0">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<nav class="Path">
+			<ul>
+				<li><a href="../index.html">Klassenübersicht</a></li>
+				<li><a class="link" href="../kursobjektbasis/kursobjektbasis.html">KursObjektBasis</a></li>
+				<li><a class="link" href="../kursobjekt/kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="lernfeld.html">Lernfeld</a></li>
+				<li><a class="link" href="lernfeld_add.html">Lernfeld::Add</a></li>
+			</ul>
+		</nav>
+		<main>
+			<div class="intro">
+			<h1 class="introTitle">Lernfeld::Add</h1>
+			<p>Lernfeld::Add - Fügt einem modul Objekt ein Lernfeld Objekt hinzu</p>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beschreibung</h2>
+				<div class="beschreibung">
+					<div class="desc">
+						<span class="modifier">public</span>
+						<span class="method"><a class="method" href="lernfeld_add.html">Add </a></span>(
+						<span class="type">object</span>
+						<span class="param">$objekt </span>)
+					</div>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Parameter-Liste</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>objekt</dt>
+						<dd class="para">Das Schwerpunkt Objekt das hinzugefügt werden soll.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Fehler / Ausnahmen</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>ObjectSelfAdditionException</dt>
+						<dd class="para">Wird ausgelöst, wenn das hinzuzufügende Objekt durch die selbe Klasse instanziiert wurde.</dd>
+						<dt>InvalidObjectAdditionException</dt>
+						<dd class="para">Wird ausgelöst, wenn das hinzuzufügende Objekt nicht durch die Klasse 'Schwerpunkt' instanziiert wurde.</dd>
+						<dt>ObjectAllreadyInCollectionException</dt>
+						<dd class="para">Wird ausgelöst, wenn das hinzuzufügende Objekt bereits in der Eigenschaft <span class="param">data</span> des Lernfeld Objekt enthalten ist.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beispiel(e)</h2>
+				<div class="beschreibung">
+					<span class="method">&#60 ?php<br></span>
+					<span class="comment">/* Lernfeld Objekt erstellen */<br></span>
+					<span class="method">$lf1 =</span> <span class="type">new</span> <span class="method">Lernfeld</span>(<span class="modifier">"Beispiel Lernfeld", <span class="modifier">80</span></span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$lf1->bezeichnung;</span> . <span class="type">', '</span> . <span class="param">$lf1->ue</span>
+					<br>
+					<span class="comment">/* Gibt 'Beispiel Lernfeld, 80' aus */<br></span>
+					<br>
+					<span class="comment">/* Schwerpunkt Objekt erstellen */</span>
+					<br>
+					<span class="method">$sp1 =</span> <span class="type">new</span> <span class="method">Schwerpunkt</span>(<span class="modifier">"Test Schwerpunkt"</span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$sp1->bezeichnung</span>
+					<br>
+					<span class="comment">/* Gibt 'Test Schwerpunkt' aus */<br></span>
+					<br>
+					<span class="comment">/* Lernfeld Objekt $lf1 das Schwerpunkt Objekt $sp1 hinzufügen */</span>
+					<br>
+					<span class="method">$lf1->Add</span></span>(<span class="param">$sp1</span>);
+					<br>
+					<span class="method">? &#62 </span>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

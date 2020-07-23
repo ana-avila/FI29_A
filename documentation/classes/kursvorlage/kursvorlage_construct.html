@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<title>Kursvorlage::__construct</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="expires" content="0">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<nav class="Path">
+			<ul>
+				<li><a href="../index.html">Klassenübersicht</a></li>
+				<li><a class="link" href="../kursobjektbasis/kursobjektbasis.html">KursObjektBasis</a></li>
+				<li><a class="link" href="../kursobjekt/kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="kursvorlage.html">Kursvorlage</a></li>
+				<li><a class="link" href="kursvorlage_construct.html">Kursvorlage::__construct</a></li>
+			</ul>
+		</nav>
+		<main>
+			<div class="intro">
+			<h1 class="introTitle">Kursvorlage::__construct</h1>
+			<p>Kursvorlage::__construct - Erstellt eine Kursvorlage instanz</p>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beschreibung</h2>
+				<div class="beschreibung">
+					<div class="desc">
+						<span class="modifier">public</span>
+						<span class="method"><a class="method" href="kursvorlage_construct.html">__construct </a></span>(
+						<span class="type">string</span>
+						<span class="param">$bezeichnung </span>[, 
+						<span class="type">int</span>
+						<span class="param">$ue </span>
+						<span class="modifier">= 0</span>] )
+					</div>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Parameter-Liste</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>bezeichnung</dt>
+						<dd class="para">Die Bezeichnung die dieses Objekt tragen soll.</dd>
+						<dt>ue</dt>
+						<dd class="para">Die Anzahl der Unterrichtseinheiten dieses Objektes. Optional, beträgt bei auslassen 0.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Rückgabewerte</h2>
+				<div class="beschreibung">
+					<p>Erstellt ein Kursvorlage Objekt bei Erfolg</p>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beispiel(e)</h2>
+				<div class="beschreibung">
+					<span class="method">&#60 ?php<br></span>
+					<span class="comment">/* Kursvorlage Objekt erstellen */<br></span>
+					<span class="method">$ko1 =</span> <span class="type">new</span> <span class="method">Kursvorlage</span>(<span class="modifier">"Beispiel Kursvorlage"</span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$kv1->bezeichnung;</span></span>
+					<br>
+					<span class="comment">/* Gibt 'Beispiel Kursvorlage' */<br></span>
+					<br>
+					<span class="method">?&#62 </span>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<title>Modul::__construct</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="expires" content="0">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<nav class="Path">
+			<ul>
+				<li><a href="../index.html">Klassenübersicht</a></li>
+				<li><a class="link" href="../kursobjektbasis/kursobjektbasis.html">KursObjektBasis</a></li>
+				<li><a class="link" href="../kursobjekt/kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="modul.html">Modul</a></li>
+				<li><a class="link" href="modul_construct.html">Modul::__construct</a></li>
+			</ul>
+		</nav>
+		<main>
+			<div class="intro">
+			<h1 class="introTitle">Modul::__construct</h1>
+			<p>Modul::__construct - Erstellt eine Modul instanz</p>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beschreibung</h2>
+				<div class="beschreibung">
+					<div class="desc">
+						<span class="modifier">public</span>
+						<span class="method"><a class="method" href="modul_construct.html">__construct </a></span>(
+						<span class="type">string</span>
+						<span class="param">$bezeichnung </span>[, 
+						<span class="type">int</span>
+						<span class="param">$ue </span>
+						<span class="modifier">= 0</span>] )
+					</div>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Parameter-Liste</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>bezeichnung</dt>
+						<dd class="para">Die Bezeichnung die dieses Objekt tragen soll.</dd>
+						<dt>ue</dt>
+						<dd class="para">Die Anzahl der Unterrichtseinheiten dieses Objektes. Optional, beträgt bei auslassen 0.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Rückgabewerte</h2>
+				<div class="beschreibung">
+					<p>Erstellt ein Modul Objekt bei Erfolg</p>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beispiel(e)</h2>
+				<div class="beschreibung">
+					<span class="method">&#60 ?php<br></span>
+					<span class="comment">/* Modul Objekt erstellen */<br></span>
+					<span class="method">$mo1 =</span> <span class="type">new</span> <span class="method">Modul</span>(<span class="modifier">"Beispiel Modul"</span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$mo1->bezeichnung;</span></span>
+					<br>
+					<span class="comment">/* Gibt 'Beispiel Modul' aus*/<br></span>
+					<br>
+					<span class="method">?&#62 </span>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

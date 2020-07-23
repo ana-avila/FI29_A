@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8">
+		<title>Kursvorlage::Add</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="expires" content="0">
+		<link rel="stylesheet" href="../css/style.css">
+	</head>
+	<body>
+		<nav class="Path">
+			<ul>
+				<li><a href="../index.html">Klassenübersicht</a></li>
+				<li><a class="link" href="../kursobjektbasis/kursobjektbasis.html">KursObjektBasis</a></li>
+				<li><a class="link" href="../kursobjekt/kursobjekt.html">KursObjekt</a></li>
+				<li><a class="link" href="kursvorlage.html">Kursvorlage</a></li>
+				<li><a class="link" href="kursobjekt_add.html">Kursvorlage::Add</a></li>
+			</ul>
+		</nav>
+		<main>
+			<div class="intro">
+			<h1 class="introTitle">Kursvorlage::Add</h1>
+			<p>Kursvorlage::Add - Fügt einem Kursvorlage Objekt ein Modul Objekt hinzu</p>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beschreibung</h2>
+				<div class="beschreibung">
+					<div class="desc">
+						<span class="modifier">public</span>
+						<span class="method"><a class="method" href="kursvorlage_add.html">Add </a></span>(
+						<span class="type">object</span>
+						<span class="param">$objekt </span>)
+					</div>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Parameter-Liste</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>objekt</dt>
+						<dd class="para">Das Modul Objekt das hinzugefügt werden soll. Verfügt das hinzuzufügende Modul Objekt über einen Wert für Unterrichtseinheiten, wird dieser zu den Unterrichtseinheiten des Kursvorlage Objekt, dem es hinzugefügt wird, angerechnet.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Fehler / Ausnahmen</h2>
+				<div class="beschreibung">
+					<dl>
+						<dt>ObjectSelfAdditionException</dt>
+						<dd class="para">Wird ausgelöst, wenn das hinzuzufügende Objekt durch die selbe Klasse instanziiert wurde.</dd>
+						<dt>InvalidObjectAdditionException</dt>
+						<dd class="para">Wird ausgelöst, wenn das hinzuzufügende Objekt nicht durch die Klasse 'Modul' instanziiert wurde.</dd>
+						<dt>ObjectAllreadyInCollectionException</dt>
+						<dd class="para">Wird ausgelöst, wenn das hinzuzufügende Objekt bereits in der Eigenschaft <span class="param">data</span> des Kursvorlage Objekt enthalten ist.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="ref">
+				<h2 class="refTitle">Beispiel(e)</h2>
+				<div class="beschreibung">
+					<span class="method">&#60 ?php<br></span>
+					<span class="comment">/* Kursvorlage Objekt erstellen */<br></span>
+					<span class="method">$kv1 =</span> <span class="type">new</span> <span class="method">Kursvorlage</span>(<span class="modifier">"Beispiel Kursvorlage"</span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$kv1->bezeichnung;</span></span>
+					<br>
+					<span class="comment">/* Gibt 'Beispiel Kursvorlage' aus */<br></span>
+					<br>
+					<span class="comment">/* Modul Objekt mit Bezeichnung erstellen */</span>
+					<br>
+					<span class="method">$mo1 =</span> <span class="type">new</span> <span class="method">Modul</span>(<span class="modifier">"Test Modul"</span>);
+					<br>
+					<br>
+					<span class="method">echo</span> <span class="param">$mo2->bezeichnung;</span></span>
+					<br>
+					<span class="comment">/* Gibt 'Test Modul' aus */<br></span>
+					<br>
+					<span class="comment">/* Kursvorlage Objekt $kv1 das Modul Objekt $mo1 hinzufügen */</span>
+					<br>
+					<span class="method">$kv1->Add</span></span>(<span class="param">$mo1</span>);
+					<br>
+					<span class="method">? &#62 </span>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
