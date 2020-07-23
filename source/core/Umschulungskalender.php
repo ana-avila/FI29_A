@@ -25,6 +25,8 @@ class Umschulungskalender
 		$jahr = $calData[0];
 		$monat = (int) $calData[1];
 		$tag = (int) $calData[2];
+		$startMonat = $calData[1];
+		$startTag = $calData[2];
 		$numTage = $this->dauer * 365 + 1;
 		$osMonat = 3;
 		
@@ -123,6 +125,17 @@ class Umschulungskalender
 				{
 					$aktMonatTage = $MonatTage[$monat - 1];
 				}
+				if($dauer <= 0 && $monat == $startMonat)
+				{
+					if($startTag == 1)
+					{
+						$aktMonatTage = $startTag;
+					}
+					else
+					{
+						$aktMonatTage = $startTag - 1;
+					}
+				}
 				for($tag; $tag <= $aktMonatTage; $tag++)
 				{
 					if($tag < 10)
@@ -158,6 +171,12 @@ class Umschulungskalender
 					array_push($aktMonat->tage, $aktTag);
 				}
 				array_push($aktJahr->monate, $aktMonat);
+				
+				if($dauer <= 0 && $monat == $startMonat)
+				{
+					break;
+				}
+				
 				$tag = 01;
 			}
 			array_push($this->jahre, $aktJahr);
