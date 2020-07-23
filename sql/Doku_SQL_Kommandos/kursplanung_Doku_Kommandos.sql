@@ -170,6 +170,12 @@ ALTER TABLE moduldauer AUTO_INCREMENT = 0;
 ALTER TABLE lernfelderschwerpunktthemen AUTO_INCREMENT = 0;
 ALTER TABLE schwerpunktthemen AUTO_INCREMENT = 0;
 
+-- Attribute vorname und nachname aus Tabelle "admin" löschen
+
+ALTER TABLE admins DROP vorname;
+ALTER TABLE admins DROP nachname;
+
+
 
 
 
